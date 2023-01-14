@@ -27,10 +27,10 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
     try{
-        requestCounter.inc({'route': '/', 'status_code': 200})
+        requestCounter.inc({'route': '/', 'status_code': 200, 'requestType':'get'})
         res.send('Welcome to Kanban Project!');
     }catch(err){
-        requestCounter.inc({'route': '/', 'status_code': 400})
+        requestCounter.inc({'route': '/', 'status_code': 400, 'requestType':'get'})
     }
 })
 

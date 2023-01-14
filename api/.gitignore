@@ -6,7 +6,7 @@
 .pnp.js
 
 prometheus-2.41.0.linux-amd64
-
+grafana-enterprise-9.3.2.linux-amd64
 # testing
 /coverage
 

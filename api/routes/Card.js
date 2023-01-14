@@ -2,32 +2,18 @@ var express = require("express");
 const {Card} = require("../models/Card");
 const { Column } = require("../models/Column");
 const {requestCounter, total_tasks} = require('../metrics')
-// const os = require('node:os');
-
-// const winston = require('winston');
-// const { Datadog } = require('winston-datadog');
-
-// const DatadogTransport = require('winston-datadog-logger');
 
 var router = express.Router();
 
-// const logger = winston.createLogger({
-//     transports: [
-//       newDatadogTransport({
-//         apiKey: '2a588fee0c6101bdbfb341e4428678c1',
-//         hostname: os.hostname(),
-//       }),
-//     ],
-//   });
 
 router.get("/", async (req, res) => {
     try {
         console.log(req.requestId);
         const cards = await Card.find();
-        requestCounter.inc({'route': '/card', 'status_code': 200})
+        requestCounter.inc({'route': '/card', 'status_code': 200, 'requestType':'get'})
         res.status(200).json(cards);
     } catch (err) {
-        requestCounter.inc({'route': '/card', 'status_code': 400})
+        requestCounter.inc({'route': '/card', 'status_code': 400, 'requestType':'get'})
         res.status(404).json({ message: err });
     }
 
@@ -36,9 +22,10 @@ router.get("/", async (req, res) => {
 router.get("/:cardId", async (req, res) => {
     try {
         const card = await Card.findById(req.params.cardId);
+        requestCounter.inc({'route': '/card/id', 'status_code': 200, 'requestType':'get'})
         res.status(200).json(card);
     } catch (err) {
-        requestCounter.inc({'route': '/card', 'status_code': 400})
+        requestCounter.inc({'route': '/card/id', 'status_code': 400, 'requestType':'get'})
         res.status(404).json({ message: err });
     }
 
@@ -63,9 +50,11 @@ router.post("/", async (req, res) => {
                 cards: savedCard,
             },
         })
+        requestCounter.inc({'route': '/card', 'status_code': 200, 'requestType':'post'})
         total_tasks.inc();
         res.send(savedCard);
     } catch (err) {
+        requestCounter.inc({'route': '/card', 'status_code': 200, 'requestType':'post'})
         res.status(404).json({ message: err });
     }
 });
@@ -80,8 +69,10 @@ router.put("/", async(req, res) => {
                 assignee: assignee,
             }
         );
+        requestCounter.inc({'route': '/card', 'status_code': 200, 'requestType':'put'})
         res.status(200).json(card);
     } catch (e) {
+        requestCounter.inc({'route': '/card', 'status_code': 400, 'requestType':'put'})
         res.send(e);
     }
 });
@@ -89,9 +80,11 @@ router.put("/", async(req, res) => {
 router.delete("/:cardId", async(req, res) => {
     try {
         const removedCard = await Card.remove({ _id: req.params.cardId });
+        requestCounter.inc({'route': '/card', 'status_code': 200, 'requestType':'delete'})
         total_tasks.dec();
         res.status(200).json(removedCard);
     } catch (err) {
+        requestCounter.inc({'route': '/card', 'status_code': 400, 'requestType':'delete'})
         res.status(404).json({ message: err });
     }
 });

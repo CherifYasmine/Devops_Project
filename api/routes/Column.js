@@ -7,10 +7,10 @@ var router = express.Router();
 router.get("/", async (req, res) => {
     try {
         const columns = await Column.find();
-        requestCounter.inc({'route': '/column', 'status_code': 200})
+        requestCounter.inc({'route': '/column', 'status_code': 200, 'requestType':'get'})
         res.status(200).json(columns);
     } catch (err) {
-        requestCounter.inc({'route': '/column', 'status_code': 400})
+        requestCounter.inc({'route': '/column', 'status_code': 400, 'requestType':'get'})
         res.status(404).json({ message: err });
     }
 
@@ -23,9 +23,10 @@ router.post("/", async (req, res) => {
             name: name,
         });
         const savedColumn = await column.save();
-
+        requestCounter.inc({'route': '/column', 'status_code': 200, 'requestType':'post'})
         res.send(savedColumn);
     } catch (err) {
+        requestCounter.inc({'route': '/column', 'status_code': 200, 'requestType':'post'})
         res.status(404).json({ message: err });
     }
 });
@@ -33,8 +34,10 @@ router.post("/", async (req, res) => {
 router.get("/:columnId", async (req, res) => {
     try {
         const column = await Column.findById(req.params.columnId);
+        requestCounter.inc({'route': '/column/id', 'status_code': 200, 'requestType':'get'})
         res.status(200).json(column);
     } catch (err) {
+        requestCounter.inc({'route': '/column/id', 'status_code': 400, 'requestType':'get'})
         res.status(404).json({ message: err });
     }
 
@@ -51,8 +54,10 @@ router.put("/", async(req, res) => {
                 _id: columnId
             }
         );
+        requestCounter.inc({'route': '/column', 'status_code': 200, 'requestType':'put'})
         res.status(200).json(updated);
     } catch (e) {
+        requestCounter.inc({'route': '/column', 'status_code': 400, 'requestType':'put'})
         res.send(e);
     }
 });
@@ -60,8 +65,10 @@ router.put("/", async(req, res) => {
 router.delete("/:columnId", async(req, res) => {
     try {
         const removedCol = await Column.remove({ _id: req.params.columnId });
+        requestCounter.inc({'route': '/column', 'status_code': 200, 'requestType':'delete'})
         res.status(200).json(removedCol);
     } catch (err) {
+        requestCounter.inc({'route': '/column', 'status_code': 400, 'requestType':'delete'})
         res.status(404).json({ message: err });
     }
 });
