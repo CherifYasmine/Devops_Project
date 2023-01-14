@@ -2,13 +2,15 @@ var express = require("express");
 const {Card} = require("../models/Card");
 const { Column } = require("../models/Column");
 const {requestCounter, total_tasks} = require('../metrics')
+const {logger} = require('../logger')
 
 var router = express.Router();
+
+const childLogger = logger.child({ service: 'card-service'});
 
 
 router.get("/", async (req, res) => {
     try {
-        console.log(req.requestId);
         const cards = await Card.find();
         requestCounter.inc({'route': '/card', 'status_code': 200, 'requestType':'get'})
         res.status(200).json(cards);
@@ -35,7 +37,10 @@ router.post("/", async (req, res) => {
     try {
         const { name, description, assignee, columnId  } = req.body;
         const columnn = await Column.findById(columnId);
-        console.log(columnn);
+        childLogger.info('Creating a new task', { request_id: req.requestId});
+        if (!description || !name){
+            childLogger.error('Name and descripton are required', { request_id: req.requestId});
+        }
         const card = new Card({
             name: name,
             description: description,
@@ -61,6 +66,7 @@ router.post("/", async (req, res) => {
 
 router.put("/", async(req, res) => {
     const { cardId, name, description, assignee  } = req.body;
+    childLogger.info('updating a task', { request_id: req.requestId});
     try {
         const card = await Card.updateOne({ _id: cardId },
             {

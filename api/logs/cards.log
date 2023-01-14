@@ -1,0 +1,6 @@
+{"level":"info","message":"all tasks","request_id":"76981531-0c2d-4b30-afd7-951b963a8586","service":"card-service","timestamp":"2023-01-14T20:18:07.009Z"}
+{"level":"info","message":"all tasks","request_id":"60d9ee4f-7577-419f-9d40-a9f04668df91","service":"card-service","timestamp":"2023-01-14T20:18:09.711Z"}
+{"level":"info","message":"all tasks","request_id":"bebe29d0-0eac-414c-8899-110838e5ea6d","service":"card-service","timestamp":"2023-01-14T20:18:10.275Z"}
+{"level":"info","message":"Creating a new task","request_id":"37fa684b-91f8-4340-9755-79993e37f5a7","service":"card-service","timestamp":"2023-01-14T20:19:56.150Z"}
+{"level":"error","message":"Name and descripton are required","request_id":"37fa684b-91f8-4340-9755-79993e37f5a7","service":"card-service","timestamp":"2023-01-14T20:19:56.151Z"}
+{"level":"info","message":"Creating a new task","request_id":"63f13b9f-3166-4de0-aff9-242286cf6905","service":"card-service","timestamp":"2023-01-14T20:20:11.642Z"}
