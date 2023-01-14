@@ -1,0 +1,42 @@
+.title {
+  text-align: center;
+  align-content: center;
+}
+.wrapper {
+  display: flex;
+  column-gap: 10px;
+  margin-top: 10%;
+  margin-left: 40%;
+}
+.wrapper .dot {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #008ae6;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: animate 1s ease-in-out infinite alternate;
+}
+.dot:nth-child(1) {
+  animation-delay: -0.25s;
+}
+.dot:nth-child(2) {
+  background: #008ae6;
+  animation-delay: -0.5s;
+}
+.dot:nth-child(3) {
+  background: #008ae6;
+  animation-delay: -0.75s;
+}
+.dot:nth-child(4) {
+  background: #008ae6;
+  animation-delay: -1s;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
