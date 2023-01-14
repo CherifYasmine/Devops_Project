@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment # type of resource
+metadata:
+  name: kanban-api
+  labels:
+    app: kanban-api
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kanban-api
+  template:
+    metadata:
+      labels:
+        app: kanban-api
+    spec:
+      containers:
+        - name: kanban-api
+          image: yasminecherif/kanban-api
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
