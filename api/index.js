@@ -4,6 +4,7 @@ var dotenv = require("dotenv");
 var mongoose = require("mongoose");
 var cardRouter = require("./routes/Card")
 var columnRouter = require("./routes/Column")
+const uuid = require('uuid');
 
 const client = require('prom-client');
 const {requestCounter} = require('./metrics')
@@ -18,6 +19,10 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
 
+app.use((req, res, next) => {
+    req.requestId = uuid.v4();
+    next();
+});
 
 
 app.get('/', (req, res) => {

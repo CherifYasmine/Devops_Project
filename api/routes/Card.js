@@ -2,11 +2,27 @@ var express = require("express");
 const {Card} = require("../models/Card");
 const { Column } = require("../models/Column");
 const {requestCounter, total_tasks} = require('../metrics')
+// const os = require('node:os');
+
+// const winston = require('winston');
+// const { Datadog } = require('winston-datadog');
+
+// const DatadogTransport = require('winston-datadog-logger');
 
 var router = express.Router();
 
+// const logger = winston.createLogger({
+//     transports: [
+//       newDatadogTransport({
+//         apiKey: '2a588fee0c6101bdbfb341e4428678c1',
+//         hostname: os.hostname(),
+//       }),
+//     ],
+//   });
+
 router.get("/", async (req, res) => {
     try {
+        console.log(req.requestId);
         const cards = await Card.find();
         requestCounter.inc({'route': '/card', 'status_code': 200})
         res.status(200).json(cards);
