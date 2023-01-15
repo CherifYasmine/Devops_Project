@@ -12,9 +12,15 @@ function CardCol({ cardId }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     useEffect(() => {
-        getCard(cardId).then(function (response) {
-            setCard(response.data)
-        });
+        async function card (){
+            try {
+                const response = await getCard(cardId)
+                setCard(response.data)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        card()
 
     }, [cardId])
 

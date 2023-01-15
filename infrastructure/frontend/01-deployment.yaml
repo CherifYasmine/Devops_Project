@@ -17,12 +17,14 @@ spec:
     spec:
       containers:
         - name: kanban-frontend
-          image: yasminecherif/kanban-frontend:latest
+          image: yasminecherif/kanban-frontend-devops
           imagePullPolicy: Always
+          resources:
           ports:
             - containerPort: 3000
           livenessProbe:
             httpGet:
               path: /healthz
               port: 3000
-          
+      restartPolicy: Always
+      

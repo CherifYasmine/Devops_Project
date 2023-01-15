@@ -17,21 +17,34 @@ function KanbanColumn({ columnId, index }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     useEffect(() => {
-        getColumn(columnId).then(function (response) {
-            setColumn(response.data)
-            setColumnName(response.data.name)
-        });
+        async function col (){
+            try {
+                const response = await getColumn(columnId)
+                setColumn(response.data)
+                setColumnName(response.data.name)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+       col()
 
     }, [columnId])
 
     const updateColumnName = async (e) => {
-        setColumnName(e.target.value)
-        await updateColumn({ columnId: columnId, name: e.target.value }).then((response) => {
-            console.log(response)
-        })
+       setColumnName(e.target.value)
+       try {
+            await updateColumn({ columnId: columnId, name: e.target.value })
+
+       } catch (error) {
+            console.log(error);
+       }
     }
     const dropColumn = async () =>{
-        await deleteColumn(columnId).then((response)=>console.log(response))
+          try {
+            await deleteColumn(columnId)
+          } catch (error) {
+            console.log(error);
+          }
     }
     return (
         <div style={styles.container}>

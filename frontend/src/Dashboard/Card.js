@@ -9,10 +9,21 @@ function Card ({card}) {
     const [name, setName] = useState(card.name)
     const [description, setDescription] = useState(card.description)
     const saveChanges = async () => {
-        await updateCard({cardId: card._id, name: name, description: description}).then((response)=>window.location.reload())
+
+        try {
+            await updateCard({cardId: card._id, name: name, description: description});
+            window.location.reload()
+        } catch (error) {
+            console.log(error);
+        }
     }
     const dropCard = async () => {
-        await deleteCard(card._id).then((response)=>window.location.reload())
+        try {
+            await deleteCard(card._id)
+            window.location.reload()
+        } catch (error) {
+            console.log(error);
+        }
     }
  return(
     <div>

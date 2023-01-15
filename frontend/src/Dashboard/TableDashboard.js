@@ -16,12 +16,16 @@ function TableDashboard() {
 
     useEffect(() => {
         getCards().then(function (response) {
-            setcards(response.data)
-        });
+            setcards(response.data);
+        }).catch(err=>{
+            console.log(err);
+          });
         getColumns().then(function (response) {
-            setColumns(response.data)
-            setLoading(false)
-        });
+            setColumns(response.data);
+            setLoading(false);
+        }).catch(err=>{
+            console.log(err);
+          });
     }, [cards, columns])
     return (
         loading ? <Loader /> :

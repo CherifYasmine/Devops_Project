@@ -9,9 +9,12 @@ function CardCreate ({columnId}) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const saveChanges = async () => {
-        await addCard({name: name, description: description, columnId:columnId, assignee: 'Yasmine Cherif'})
-        .then((response)=>window.location.reload())
-        .catch(err=>console.error(err))
+        try {
+            await addCard({name: name, description: description, columnId:columnId, assignee: 'Yasmine Cherif'})
+            window.location.reload()
+        } catch (error) {
+            console.log(error);
+        }
     }
  return(
     <div>

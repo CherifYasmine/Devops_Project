@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     try{
         requestCounter.inc({'route': '/', 'status_code': 200, 'requestType':'get'})
         res.send('Welcome to Kanban Project!');
@@ -43,8 +43,8 @@ app.get('/metrics', async (req, res) => {
     }
 })
 
-app.use("/card", cardRouter);
-app.use("/column", columnRouter);
+app.use("/api/card", cardRouter);
+app.use("/api/column", columnRouter);
 
 
 const PORT = process.env.PORT || 5000;

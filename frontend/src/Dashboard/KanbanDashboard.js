@@ -12,18 +12,27 @@ function KanbanDashboard() {
   const [plusClicked, setPlusClicked] = useState(false)
   const [newColumn, setNewColumn] = useState("")
   useEffect(() => {
-    getColumns().then(function (response) {
-      setColumns(response.data)
-      setLoading(false)
-    });
+    async function cols (){
+      try {
+        const response = await getColumns();
+        setColumns(response.data) 
+        setLoading(false)
+      } catch (error) {
+          console.log(error);
+      }
+    }
+    cols();
 
   }, [columns])
 
   const addColumnK = async () => {
-    await addColumn({ name: newColumn }).then(function (response) {
+    try {
+      await addColumn({ name: newColumn });
       setNewColumn("")
       setPlusClicked(false)
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     

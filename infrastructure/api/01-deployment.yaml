@@ -19,5 +19,13 @@ spec:
         - name: kanban-api
           image: yasminecherif/kanban-api
           imagePullPolicy: Always
+          resources:
           ports:
             - containerPort: 5000
+          env:
+            - name: CONNECTION_URL
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-kanban
+                  key: CONNECTION_URL
+      restartPolicy: Always

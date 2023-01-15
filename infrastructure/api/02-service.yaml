@@ -7,5 +7,6 @@ spec:
   app: kanban-api
  ports:
  - name: kanban-api-port
+   protocol: TCP
    port: 5000
    targetPort: 5000
