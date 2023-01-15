@@ -4,17 +4,15 @@ metadata:
   name: kanban-api
   labels:
     name: kanban-api
-
 spec:
   ingressClassName: nginx
   rules:
-  - host: kanban.devops
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/api"
-        backend:
-          service:
-            name: kanban-api-service
-            port: 
-              number: 5000
+    - http:
+        paths:
+        - pathType: Prefix
+          path: "/api"
+          backend:
+            service:
+              name: kanban-api-service
+              port: 
+                number: 5000

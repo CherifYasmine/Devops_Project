@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const api = 'http://kanban.devops/api/';
+const api = 'http://20.8.73.32/api/';
 export const getColumns = async () => {
     console.log('this new', api);
     return await axios({

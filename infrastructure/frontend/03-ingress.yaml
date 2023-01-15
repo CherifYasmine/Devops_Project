@@ -4,17 +4,15 @@ metadata:
   name: kanban-frontend
   labels:
     name: kanban-frontend
-
 spec:
   ingressClassName: nginx
   rules:
-  - host: kanban.devops
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: kanban-frontend-service
-            port: 
-              number: 3000
+    - http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: kanban-frontend-service
+              port: 
+                number: 3000
