@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-const api = 'http://localhost:5000/'
+const api = 'http://kanban-api-service:5000/';
 export const getColumns = async () => {
+    console.log(api);
     return await axios({
         method: 'get',
         url: api + 'column/'
@@ -16,7 +17,7 @@ export const getCards = async () => {
 }
 
 export const addColumn = async (data) => {
-    return await axios.post('http://localhost:5000/column', data)
+    return await axios.post(api + 'column', data)
 }
 
 export const getColumn = async (columnId) => {
