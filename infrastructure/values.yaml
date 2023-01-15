@@ -9,3 +9,7 @@ image:
 http:
   frontendport: 3000
   backendport: 5000
+
+labels:
+  app: kanban-api
+  env: production

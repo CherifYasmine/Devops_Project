@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment # type of resource
 metadata:
   name: kanban-api
-  labels:
-    app: kanban-api
+  labels: {{ toYaml .Values.labels | nindent 4 }}
 spec:
   replicas: {{.Values.deployment.replicas}}
   selector:
