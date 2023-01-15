@@ -1,5 +1,11 @@
-rbac:
-  create: true
+deployment:
+  replicas: 1
 
-alertmanager:
-  enabled: false
+image:
+  tag: latest
+  apiname: yasminecherif/kanban-api
+  frontname: yasminecherif/kanban-frontend-devops
+
+http:
+  frontendport: 3000
+  backendport: 5000

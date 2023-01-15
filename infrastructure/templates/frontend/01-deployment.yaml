@@ -6,7 +6,7 @@ metadata:
     app: kanban-frontend
 
 spec:
-  replicas: 1
+  replicas: {{.Values.deployment.replicas}}
   selector:
     matchLabels:
       app: kanban-frontend
@@ -17,11 +17,11 @@ spec:
     spec:
       containers:
         - name: kanban-frontend
-          image: yasminecherif/kanban-frontend-devops
+          image: {{.Values.image.frontname}}
           imagePullPolicy: Always
           resources:
           ports:
-            - containerPort: 3000
+            - containerPort: {{.Values.http.frontendport}}
           livenessProbe:
             httpGet:
               path: /healthz

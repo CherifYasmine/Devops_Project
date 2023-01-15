@@ -5,7 +5,7 @@ metadata:
   labels:
     app: kanban-api
 spec:
-  replicas: 1
+  replicas: {{.Values.deployment.replicas}}
   selector:
     matchLabels:
       app: kanban-api
@@ -20,11 +20,11 @@ spec:
     spec:
       containers:
         - name: kanban-api
-          image: yasminecherif/kanban-api
+          image: {{.Values.image.apiname}}
           imagePullPolicy: Always
           resources:
           ports:
-            - containerPort: 5000
+            - containerPort: {{.Values.http.backendport}}
           env:
             - name: CONNECTION_URL
               valueFrom:
