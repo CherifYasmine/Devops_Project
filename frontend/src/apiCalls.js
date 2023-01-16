@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const api = 'http://20.8.73.32/api/';
+const api = 'http://20.74.93.255/api/';
 export const getColumns = async () => {
     console.log('this new', api);
     return await axios({
