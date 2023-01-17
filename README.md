@@ -27,7 +27,8 @@ I built the frontend and the backend using docker and then I deployed them using
 ![architecture](https://user-images.githubusercontent.com/59792971/212928528-f8d6db6c-720c-46c0-99b0-ad5886964081.png)
  
  ## 4. Automation
- For the automation I used 3 stacks
+ For the automation I used 3 stacks in terraform. 
+
  ### 1. Kubernetes Cluster provisioning
  Here I provisioned an AKS cluster whithin an existiing resource group
  
@@ -36,3 +37,6 @@ I built the frontend and the backend using docker and then I deployed them using
  
  ### 3. Monitoring automation
 here I created the monitoring setup for our application using Kubernetes provider as well as Helm provider. This stackk will install prometheus, grafana and datadog on our cluster in order to monitor our application
+
+I also configured Terraform to use Azure Blob Storage as remote state backend.
+![image](https://user-images.githubusercontent.com/59792971/212934324-ec1bd29b-e70e-45e1-989d-afe947642b74.png)
