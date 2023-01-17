@@ -19,7 +19,7 @@ This is the first metric of tghe total requests
 My business metric is the total_tasks in my kanban dashboard
 ![image](https://user-images.githubusercontent.com/59792971/212904188-6e799626-ce21-4a95-9cc6-42b9ca1ff336.png)
 I visualized these metrics in grafana dashboard
-![image](https://user-images.githubusercontent.com/59792971/212925037-bb794e00-0bde-403b-b23e-c7d7ad897e19.png)
+![image](https://user-images.githubusercontent.com/59792971/212933450-5ce071e6-2d33-428e-824f-1301cd571ad3.png)
 
 ## 3. Deployment
 I built the frontend and the backend using docker and then I deployed them using kubernetes. This is the architecture of the deployment of the application
