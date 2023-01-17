@@ -22,8 +22,8 @@ I visualized these metrics in grafana dashboard
 ![image](https://user-images.githubusercontent.com/59792971/212925037-bb794e00-0bde-403b-b23e-c7d7ad897e19.png)
 
 ## 3. Deployment
-I built the frontend and the backend using docker and then I deployed them using kubernetes.
-This is the architecture of the deployment of the application
+I built the frontend and the backend using docker and then I deployed them using kubernetes. This is the architecture of the deployment of the application
+
 ![architecture](https://user-images.githubusercontent.com/59792971/212928528-f8d6db6c-720c-46c0-99b0-ad5886964081.png)
  
  ## 4. Automation
