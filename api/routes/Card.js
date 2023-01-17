@@ -37,9 +37,9 @@ router.post("/", async (req, res) => {
     try {
         const { name, description, assignee, columnId  } = req.body;
         const columnn = await Column.findById(columnId);
-        childLogger.info('Creating a new task', { request_id: req.requestId});
+        childLogger.info('Creating a new task', { request_id: req.requestId, ip_adress: req.ip});
         if (!description || !name){
-            childLogger.error('Name and descripton are required', { request_id: req.requestId});
+            childLogger.error('Name and descripton are required', { request_id: req.requestId, ip_adress: req.ip});
         }
         const card = new Card({
             name: name,
@@ -59,14 +59,14 @@ router.post("/", async (req, res) => {
         total_tasks.inc();
         res.send(savedCard);
     } catch (err) {
-        requestCounter.inc({'route': '/card', 'status_code': 200, 'requestType':'post'})
+        requestCounter.inc({'route': '/card', 'status_code': 400, 'requestType':'post'})
         res.status(404).json({ message: err });
     }
 });
 
 router.put("/", async(req, res) => {
     const { cardId, name, description, assignee  } = req.body;
-    childLogger.info('updating a task', { request_id: req.requestId});
+    childLogger.info('updating a task', { request_id: req.requestId, ip_adress: req.ip});
     try {
         const card = await Card.updateOne({ _id: cardId },
             {

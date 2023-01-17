@@ -3,6 +3,7 @@ const {Column} = require("../models/Column");
 const {requestCounter} = require('../metrics')
 
 const {statusLogger} = require('../logger')
+const childLogger = statusLogger.child({ service: 'column-service'});
 
 var router = express.Router();
 
@@ -24,15 +25,15 @@ router.post("/", async (req, res) => {
         const column = new Column({
             name: name,
         });
-        statusLogger.info('Creating a new column', { request_id: req.requestId});
+        childLogger.info('Creating a new column', { request_id: req.requestId, ip_adress: req.ip});
         if (!name){
-            childLogger.error('Name is required', { request_id: req.requestId});
+            childLogger.error('Name is required', { request_id: req.requestId, ip_adress: req.ip});
         }
         const savedColumn = await column.save();
         requestCounter.inc({'route': '/column', 'status_code': 200, 'requestType':'post'})
         res.send(savedColumn);
     } catch (err) {
-        requestCounter.inc({'route': '/column', 'status_code': 200, 'requestType':'post'})
+        requestCounter.inc({'route': '/column', 'status_code': 400, 'requestType':'post'})
         res.status(404).json({ message: err });
     }
 });

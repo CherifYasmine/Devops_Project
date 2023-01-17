@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var cardRouter = require("./routes/Card")
 var columnRouter = require("./routes/Column")
 const uuid = require('uuid');
+const rateLimit = require('express-rate-limit')
 
 const client = require('prom-client');
 const {requestCounter} = require('./metrics')
@@ -18,6 +19,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
+const limiter = rateLimit({
+	windowMs: 15 * 1000, 
+	max: 500, 
+	standardHeaders: true, 
+	legacyHeaders: false, 
+    skip: (req) => {
+        const { path } = req;
+        const skipPaths = ['/metrics'];
+        return skipPaths.includes(path);
+    }
+})
+
+app.use(limiter)
 
 app.use((req, res, next) => {
     req.requestId = uuid.v4();
