@@ -27,9 +27,12 @@ I built the frontend and the backend using docker and then I deployed them using
 ![architecture](https://user-images.githubusercontent.com/59792971/212928528-f8d6db6c-720c-46c0-99b0-ad5886964081.png)
  
  ## 4. Automation
+ For the automation I used 3 stacks
  ### 1. Kubernetes Cluster provisioning
  Here I provisioned an AKS cluster whithin an existiong resource group
  
- ### 2. Application deployment automation
+ ### 2. Application deployment 
+ To automate the deployment of my application, I created a Helm Chart and I made the docker image name, the replicas and the http ports configurable via values.yaml.  I also made it possible to add arbitrary labels to the deployment via the file values.yaml
  
  ### 3. Monitoring automation
+here I created the monitoring setup for our application using Kubernetes provider as well as Helm provider. This stackk will install prometheus, grafana and datadog on our cluster in order to monitor our application
