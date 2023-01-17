@@ -29,7 +29,7 @@ I built the frontend and the backend using docker and then I deployed them using
  ## 4. Automation
  For the automation I used 3 stacks
  ### 1. Kubernetes Cluster provisioning
- Here I provisioned an AKS cluster whithin an existiong resource group
+ Here I provisioned an AKS cluster whithin an existiing resource group
  
  ### 2. Application deployment 
  To automate the deployment of my application, I created a Helm Chart and I made the docker image name, the replicas and the http ports configurable via values.yaml.  I also made it possible to add arbitrary labels to the deployment via the file values.yaml
