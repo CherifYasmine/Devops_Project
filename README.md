@@ -27,7 +27,8 @@ I built the frontend and the backend using docker and then I deployed them using
 ![architecture](https://user-images.githubusercontent.com/59792971/212928528-f8d6db6c-720c-46c0-99b0-ad5886964081.png)
  
  ## 4. Automation
- For the automation I used 3 stacks
+ For the automation I used 3 stacks in terraform. 
+ I also configured Terraform to use Azure Blob Storage as remote state backend
  ### 1. Kubernetes Cluster provisioning
  Here I provisioned an AKS cluster whithin an existiing resource group
  
