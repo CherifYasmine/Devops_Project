@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
 const limiter = rateLimit({
-	windowMs: 15 * 1000, 
-	max: 500, 
+	windowMs: 15 * 60 * 1000, 
+	max: 100, 
 	standardHeaders: true, 
 	legacyHeaders: false, 
     skip: (req) => {

@@ -1,5 +1,5 @@
 datadog:
-  site: datadoghq.com
+  site: datadoghq.eu
 
   kubelet: 
     tlsVerify: false
