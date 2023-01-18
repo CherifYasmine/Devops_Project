@@ -30,6 +30,9 @@ I built the frontend and the backend using docker and then I deployed them using
 
 ![architecture](https://user-images.githubusercontent.com/59792971/212928528-f8d6db6c-720c-46c0-99b0-ad5886964081.png)
  
+ Concerning the deployment strategy I did not work on that but I chose a blue/green deployment because I want to maintain two identical production environments, one of which is the active environment (blue) and the other is inactive (green). During an update I wanted the new version deployed and tested on a production environment and redirecting the user traffic after  it has been verified to be working correctly. 
+ 
+ I chose blue/green over A/B testing because minimizing downtime during updates and the ability to easily rollback is a priority. and A/B testing is used if a decision about which version to use is a priority since it allows for directing a small percentage of traffic to different versions of the application
  ## 4. Automation
  For the automation I used 3 stacks in terraform. 
 
