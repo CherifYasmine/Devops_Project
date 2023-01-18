@@ -4,6 +4,10 @@
 It's a Frontend/Backend application with basic CRUD features, developed using the MERN stack. You can access the application [Here](http://20.74.93.255/) 
 ![image](https://user-images.githubusercontent.com/59792971/212894851-2d57c692-a16f-4d00-abd2-61ba9b3dab96.png)
 
+The application limits the users requests based on their IP address using the express-rate-limit package.
+Ilimited the requests to 100 requests per 15 minutes
+![Screenshot from 2023-01-17 18-41-22](https://user-images.githubusercontent.com/59792971/213181399-a8e7d54c-ebfc-4a31-a147-853955d7fb02.png)
+
 ## 2. Observability
 ### 1. Logging
 I used winston on nodejs to enable logging
